@@ -1,8 +1,8 @@
 #!/bin/bash
-REQ="go git"
+REQS="go git"
 
 # Check requirements
-for requirement in $REQ; do
+for requirement in $REQS; do
     if ! [ -x "$(command -v $requirement)" ]; then
         echo "$requirement is required to install ffuf"
         exit 1

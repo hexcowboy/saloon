@@ -9,10 +9,5 @@ for requirement in $REQS; do
     fi
 done
 
-# Clone repository
-git clone --depth 1 https://github.com/ffuf/ffuf.git /opt/ffuf
-
 # Install ffuf
-cd /opt/ffuf
-go get
-go build
+go get -u github.com/ffuf/ffuf

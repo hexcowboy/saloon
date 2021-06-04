@@ -15,5 +15,5 @@ curl -fsSL https://starship.rs/install.sh | bash -s -- --yes
 
 # Add starship to bashrc
 echo "" >> $HOME/.bashrc
-echo "Use starship prompt" >> $HOME/.bashrc
+echo "# Use starship prompt" >> $HOME/.bashrc
 echo 'eval "$(starship init bash)"' >> $HOME/.bashrc

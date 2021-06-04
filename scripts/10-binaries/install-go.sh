@@ -14,4 +14,7 @@ wget -qL $GO_URL -O /tmp/go.tar.gz
 rm -rf /usr/local/go && tar -C /usr/local -xzf /tmp/go.tar.gz
 
 # Add Go to the path
+echo "" >> $HOME/.bashrc
+echo "# Add Go to the path" >> $HOME/.bashrc
 echo "export PATH=\$PATH:/usr/local/go/bin" >> $HOME/.bashrc
+echo "export PATH=\$PATH:$HOME/go/bin" >> $HOME/.bashrc

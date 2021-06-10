@@ -5,6 +5,15 @@ The goal of this project is to provide a quick environment with offensive cyber 
 
 ## 🚀 Installation
 
+### Install prebuilt image
+
+```bash
+docker pull hexcowboy/jackbox
+docker image tag hexcowboy/jackbox jackbox
+```
+
+### Build from source
+
 Clone the repository
 ```bash
 git clone https://github.com/hexcowboy/jackbox.git && cd jackbox

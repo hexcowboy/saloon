@@ -1,7 +1,7 @@
 # Jackbox
 **⚠️ This project is in it's very early stages and shouldn't be used yet**
 
-Fully featured Docker container with hacking tools. Jackbox intends to be a lightweight replacement to pentesting VMs like Parrot and Kali.
+The goal of this project is to provide a quick environment with offensive cyber security tools without having to build and configure a virtual machine.
 
 ## 🚀 Installation
 
@@ -27,7 +27,17 @@ By default docker containers are ephemeral. If you wish to has persistent storag
 ```bash
 # The path on the left of the : is the docker volume name
 # The path on the right is the folder on the docker container
-docker run -it -v jackbox:/root jackbox
+docker run -it -v jackbox-root:/root jackbox
+
+# Mount multiple directories with
+docker run -it \
+  -v jackbox-root:/root \
+  -v jackbox-opt:/opt \
+  -v jackbox-etc:/etc \
+  -v jackbox-var:/var \
+  -v jackbox-usr:/usr \
+  -v jackbox-bin:/bin \
+  jackbox
 ```
 
 You can see where docker has put this mount by inspecting the

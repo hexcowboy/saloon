@@ -1,3 +1,6 @@
+# Change the prompt
+eval "$(starship init bash)"
+
 # Add rust binaries to the path
 export PATH="$PATH:/root/.cargo/bin"
 

@@ -14,3 +14,5 @@ gobuster
 recon-ng
 wfuzz
 smbclient
+zsh
+zsh-syntax-highlighting

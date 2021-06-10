@@ -20,11 +20,23 @@ RUN apt-get purge -y command-not-found \
     && apt-get autoremove -y \
     && apt-get clean
 
-RUN apt-get install -y wget gnupg
+ADD manifests /tmp/manifests
+# Install apt manifests
+RUN xargs apt-get install -y < /tmp/manifests/apt.lib.txt
+RUN xargs apt-get install -y < /tmp/manifests/apt.lang.txt
+RUN xargs apt-get install -y < /tmp/manifests/apt.txt
+# Install python manifests
+RUN xargs pip install < /tmp/manifests/pip.txt
+# Install ruby manifests
+RUN xargs gem install < /tmp/manifests/gems.txt
+# Install go manifests
+RUN xargs go get < /tmp/manifests/go.txt
+# Install rust manifests
+# WARNING: these take a really long time to build
+# RUN xargs cargo install < /tmp/manifests/crates.txt
 
-# Add install scripts and run them all
-ADD scripts /tmp/scripts
-RUN bash /tmp/scripts/00-start.sh
+# Copy the bashrc to the home directory
+ADD config/bashrc /root/.bashrc
 
 WORKDIR $HOME
 CMD /bin/bash

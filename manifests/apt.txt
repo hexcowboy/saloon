@@ -1,0 +1,16 @@
+arp-scan
+dnsenum
+dnsmap
+dnswalk
+smbclient
+masscan
+nikto
+nmap
+locate
+wireshark
+aircrack-ng
+binwalk
+gobuster
+recon-ng
+wfuzz
+smbclient

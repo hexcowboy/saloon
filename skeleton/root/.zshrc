@@ -1,3 +1,8 @@
+# Import aliases
+if [ -e $HOME/.aliases ]; then
+    source $HOME/.aliases
+fi
+
 # Change prompt
 eval "$(starship init zsh)"
 

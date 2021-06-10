@@ -1,5 +1,7 @@
 ruby-full
+python
 python2
+python3
 python3-pip
-cargo
+rustc
 golang

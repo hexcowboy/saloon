@@ -1,3 +1,5 @@
+# Python 3 packages
+impacket
+pwntools
 smtp-user-enum
 sublist3r
-impacket

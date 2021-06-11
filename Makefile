@@ -1,5 +1,6 @@
 .PHONY: docker
 docker:
+	chmod u+x ./scripts/*
 	docker build -t jackbox .
 
 .PHONY: clean

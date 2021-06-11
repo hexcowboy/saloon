@@ -11,12 +11,14 @@ hydra
 john
 locate
 masscan
+netcat
 nikto
 nmap
 radare2
 recon-ng
 smbclient
-smbclient
+socat
+telnet
 wfuzz
 wireshark
 zsh

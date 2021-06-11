@@ -3,8 +3,11 @@ if [ -e $HOME/.aliases ]; then
     source $HOME/.aliases
 fi
 
-# Change prompt
-eval "$(starship init zsh)"
+# Set prompt
+export PROMPT='%F{blue}%1~%f %# '
+
+# Enable fuzzyfind completion
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Add syntax highlighting
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

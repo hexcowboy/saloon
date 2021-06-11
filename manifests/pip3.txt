@@ -1,5 +1,6 @@
 # Python 3 packages
 impacket
+mitmproxy
 pwntools
 smtp-user-enum
 sublist3r

@@ -21,22 +21,13 @@ RUN apt-get purge -y command-not-found \
     && apt-get autoremove \
     && apt-get clean
 
-# Install prompt
-# https://starship.rs/guide/#%F0%9F%9A%80-installation
-RUN curl -fsSL https://starship.rs/install.sh | bash -s -- -y
-
-# Install contributed software
-ADD scripts /tmp/scripts
 ADD manifests /tmp/manifests
-
 # Install apt manifests
 RUN xargs apt-get install -y < /tmp/manifests/apt.lib.txt
 RUN xargs apt-get install -y < /tmp/manifests/apt.lang.txt
 RUN xargs apt-get install -y < /tmp/manifests/apt.txt
 # Install python manifests
-RUN pip install -r /tmp/manifests/pip.txt
-RUN /tmp/scripts/install-python2-pip.sh
-RUN pip2 install -r /tmp/manifests/pip2.txt
+RUN pip3 install -r /tmp/manifests/pip3.txt
 # Install ruby manifests
 RUN xargs gem install < /tmp/manifests/gems.txt
 # Install go manifests
@@ -45,12 +36,22 @@ RUN xargs go get < /tmp/manifests/go.txt
 # WARNING: these take a really long time to build
 RUN xargs cargo install < /tmp/manifests/crates.txt
 
+# Install from custom scripts
+ADD scripts /tmp/scripts
+RUN /tmp/scripts/all.sh
+
 # Copy the defaults to the home directory
 ADD skeleton/ /
 
 # Clean up apt
 RUN apt-get autoremove -y \
     && apt-get clean
+
+# Clean up tmp directory
+RUN rm -rf /tmp/*
+
+# Export the X11 display for use with GUI applications on host
+ENV DISPLAY=host.docker.internal:0
 
 WORKDIR $HOME
 CMD /bin/zsh

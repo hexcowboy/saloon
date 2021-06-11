@@ -1,18 +1,17 @@
 # Jackbox
-**⚠️ This project is in it's very early stages and shouldn't be used yet**
 
-The goal of this project is to provide a quick environment with offensive cyber security tools without having to build and configure a virtual machine.
+Jackbox provides offensive security tools without having to build and configure a virtuaal machine.
 
 ## 🚀 Installation
 
-### Install prebuilt image
+### Install from Dockerhub (fastest)
 
 ```bash
 docker pull hexcowboy/jackbox
 docker image tag hexcowboy/jackbox jackbox
 ```
 
-### Build from source
+### Build from source (configurable)
 
 Clone the repository
 ```bash
@@ -30,38 +29,47 @@ Once the container image is built, you can attach to jackbox with Docker
 ```bash
 # The -it flag is required to have an interactive TTY
 docker run -it jackbox
+
+# Run a command and then exit
+docker run -it jackbox smbclient -L 127.0.0.1
 ```
 
-By default docker containers are ephemeral. If you wish to has persistent storage and save files between sessions, use a docker volume
+### Saving files between runs
+
 ```bash
 # The path on the left of the : is the docker volume name
 # The path on the right is the folder on the docker container
 docker run -it -v jackbox-root:/root jackbox
 
-# Mount multiple directories with
+# Mount multiple directories like so
 docker run -it \
   -v jackbox-root:/root \
   -v jackbox-opt:/opt \
   -v jackbox-etc:/etc \
   -v jackbox-var:/var \
   -v jackbox-usr:/usr \
-  -v jackbox-bin:/bin \
   jackbox
+
+# Find the location of your mount like so
+docker volume inspect <mount-name>
 ```
 
-You can see where docker has put this mount by inspecting the
-volume
+### Running GUI applications
+
+The Docker container is compatible with X11. You just need to set your local XServer to listen on 127.0.0.1.
+
+#### macOS Example
+
+1. Install XQuartz
 ```bash
-docker volume inspect jackbox
-[
-    {
-        "CreatedAt": "2021-06-03T19:20:54Z",
-        "Driver": "local",
-        "Labels": null,
-        "Mountpoint": "/var/lib/docker/volumes/jackbox/_data",
-        "Name": "jackbox",
-        "Options": null,
-        "Scope": "local"
-    }
-]
+brew install --cask xquartz
 ```
+2. Enable `XQuartz` > `Preferences` > `Security` > `Allow connections from network clients`
+3. Add your local IP as an xhost
+```bash
+xhost + 127.0.0.1
+```
+
+#### Other Examples
+
+Coming soon. Accepting pull requests for Windows and Linux examples.

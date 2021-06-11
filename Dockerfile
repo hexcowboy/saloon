@@ -34,7 +34,9 @@ RUN xargs gem install < /tmp/manifests/gems.txt
 RUN xargs go get < /tmp/manifests/go.txt
 # Install rust manifests
 # WARNING: these take a really long time to build
-RUN xargs cargo install < /tmp/manifests/crates.txt
+RUN while read crate; do \
+        cargo install $crate; \
+    done < /tmp/manifests/crates.txt
 
 # Install from custom scripts
 ADD scripts /tmp/scripts

@@ -7,7 +7,9 @@ Jackbox provides offensive security tools without having to build and configure 
 ### Install from Dockerhub (fastest)
 
 ```bash
+# Pull the image from docker hub
 docker pull hexcowboy/jackbox
+# Tag the image so it can be run as just "jackbox"
 docker image tag hexcowboy/jackbox jackbox
 ```
 
@@ -15,11 +17,9 @@ docker image tag hexcowboy/jackbox jackbox
 
 Clone the repository
 ```bash
+# Clone the repository
 git clone https://github.com/hexcowboy/jackbox.git && cd jackbox
-```
-
-Build the docker image
-```bash
+# Build the docker container
 make
 ```
 

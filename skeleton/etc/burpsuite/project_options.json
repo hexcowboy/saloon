@@ -1,0 +1,20 @@
+{
+    "proxy":{
+        "request_listeners":[
+            {
+                "certificate_mode":"per_host",
+                "custom_tls_protocols":[
+                    "SSLv3",
+                    "TLSv1",
+                    "TLSv1.1",
+                    "TLSv1.2",
+                    "TLSv1.3"
+                ],
+                "listen_mode":"all_interfaces",
+                "listener_port":8080,
+                "running":true,
+                "use_custom_tls_protocols":false
+            }
+        ]
+    }
+}

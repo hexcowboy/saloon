@@ -11,11 +11,14 @@ hydra
 john
 locate
 masscan
+neovim
 netcat
 nikto
 nmap
+python3-venv
 radare2
 recon-ng
+ripgrep
 smbclient
 socat
 telnet

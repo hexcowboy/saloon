@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env sh
 # https://bloodhound.readthedocs.io/en/latest/installation/linux.html
 
 DEPS="wget unzip curl"

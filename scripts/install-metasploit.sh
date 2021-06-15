@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env sh
 # https://github.com/rapid7/metasploit-framework/wiki/Nightly-Installers
 
 DEPS="curl gnupg"

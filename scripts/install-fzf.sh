@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env sh
 # https://github.com/junegunn/fzf#using-git
 
 DEPS="git"

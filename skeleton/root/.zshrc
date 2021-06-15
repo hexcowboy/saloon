@@ -16,4 +16,5 @@ source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 export PATH="$PATH:/root/.cargo/bin"
 
 # Add go binaries to the path
-export PATH="$PATH:/root/go/bin"
+export GOPATH="/opt/go"
+export PATH="$PATH:/opt/go/bin"

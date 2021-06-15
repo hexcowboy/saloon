@@ -1,0 +1,5 @@
+danielmiessler/SecLists
+andrew-d/static-binaries
+danielmiessler/RobotsDisallowed
+samratashok/nishang
+3ndG4me/KaliLists

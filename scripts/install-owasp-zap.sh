@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env sh
 # https://software.opensuse.org/download.html?project=home%3Acabelo&package=owasp-zap
 
 DEPS="curl gnupg"

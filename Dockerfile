@@ -31,12 +31,13 @@ RUN pip3 install -r /tmp/manifests/pip3.txt
 # Install ruby manifests
 RUN xargs gem install < /tmp/manifests/gems.txt
 # Install go manifests
+ARG GOPATH /tmp/go
 RUN xargs go get < /tmp/manifests/go.txt
-# Install rust manifests
-# WARNING: these take a really long time to build
-RUN while read crate; do \
-        cargo install $crate; \
-    done < /tmp/manifests/crates.txt
+# Install git repositories
+RUN while read repo; do \
+        reponame=$(echo "$repo" | cut -d "/" -f2); \
+        git clone --depth 1 https://github.com/$repo.git /opt/$reponame; \
+    done < /tmp/manifests/git.txt
 
 # Install from custom scripts
 ADD scripts /tmp/scripts

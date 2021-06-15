@@ -1,5 +1,7 @@
 #!/bin/bash
 echo "Starting Saloon"
-service neo4j start
+
+# Start services quietly
+service neo4j start >/dev/null 2>&1 &
 
 /bin/zsh

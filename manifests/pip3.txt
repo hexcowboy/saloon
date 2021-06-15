@@ -1,4 +1,5 @@
 # Python 3 packages
+crackmapexec
 impacket
 mitmproxy
 pwntools

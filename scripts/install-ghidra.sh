@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env sh
+# https://github.com/NationalSecurityAgency/ghidra#install
 
 DEPS="openjdk-11-jdk jq unzip curl wget"
 URL="https://api.github.com/repos/NationalSecurityAgency/ghidra/releases/latest"

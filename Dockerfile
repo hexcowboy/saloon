@@ -31,7 +31,7 @@ RUN pip3 install -r /tmp/manifests/pip3.txt
 # Install ruby manifests
 RUN xargs gem install < /tmp/manifests/gems.txt
 # Install go manifests
-ARG GOPATH /tmp/go
+ENV GOPATH /tmp/go
 RUN xargs go get < /tmp/manifests/go.txt
 # Install git repositories
 RUN while read repo; do \

@@ -1,6 +1,6 @@
 # Saloon
 
-Saloon is a hacking environment that is rapidly available. Compared to the estimated 30 minute setup with Kali or Parrot, Saloon takes roughly 2 minutes to install.
+Saloon is a hacking environment that is rapidly available. Compared to the estimated 30+ minute setup with Kali or Parrot, Saloon takes roughly 2-5 minutes to install.
 
 ## 🚀 Installation
 

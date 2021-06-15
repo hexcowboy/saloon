@@ -1,6 +1,7 @@
 aircrack-ng
 arp-scan
 binwalk
+cewl
 dnsenum
 dnsmap
 dnswalk

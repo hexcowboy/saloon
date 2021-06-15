@@ -8,8 +8,5 @@ echo '             cowboy.dev                '
 # Start services quietly and in the background
 service neo4j start >/dev/null 2>&1 &
 
-# Sets the default shell for all new TTYs
-chsh -s $(which zsh)
-
 # Enter with the default shell
 exec "$SHELL"

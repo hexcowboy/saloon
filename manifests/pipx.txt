@@ -1,0 +1,8 @@
+deathstar-empire
+crackmapexec
+mitmproxy
+sqlmap
+impacket
+pwntools
+smtp-user-enum
+sublist3r

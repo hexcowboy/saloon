@@ -8,15 +8,9 @@ Saloon is a hacking environment that is rapidly available. Compared to the estim
 
 ```bash
 # Pull the image from docker hub
-<<<<<<< HEAD
 docker pull hexcowboy/saloon
 # Tag the image so it can be run as just "saloon"
 docker image tag hexcowboy/saloon saloon
-=======
-docker pull hexcowboy/jackbox
-# Tag the image so it can be run as just "jackbox"
-docker image tag hexcowboy/jackbox jackbox
->>>>>>> cd7d31525e2e3fba110d66d98a5919d4fec7d37f
 ```
 
 ### Build from source (configurable)
@@ -24,11 +18,7 @@ docker image tag hexcowboy/jackbox jackbox
 Clone the repository
 ```bash
 # Clone the repository
-<<<<<<< HEAD
 git clone https://github.com/hexcowboy/saloon.git && cd saloon
-=======
-git clone https://github.com/hexcowboy/jackbox.git && cd jackbox
->>>>>>> cd7d31525e2e3fba110d66d98a5919d4fec7d37f
 # Build the docker container
 make
 ```

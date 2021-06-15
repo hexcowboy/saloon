@@ -1,4 +1,6 @@
 golang
+npm
+php
 python
 python2
 python3

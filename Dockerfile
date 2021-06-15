@@ -55,5 +55,10 @@ RUN rm -rf /tmp/*
 # Export the X11 display for use with GUI applications on host
 ENV DISPLAY=host.docker.internal:0
 
+# Expose all ports to the local machine (use -P flag in docker run)
+# On Linux, just use --network=host in docker run
+EXPOSE 1-65535
+
+ADD scripts/entry.sh /entry.sh
 WORKDIR $HOME
-CMD /bin/zsh
+CMD ["/entry.sh"]

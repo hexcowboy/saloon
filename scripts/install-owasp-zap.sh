@@ -1,7 +1,7 @@
 #!/bin/bash
 # https://software.opensuse.org/download.html?project=home%3Acabelo&package=owasp-zap
 
-DEPS="curl gnupg tee"
+DEPS="curl gnupg"
 SOURCE="http://download.opensuse.org/repositories/home:/cabelo/xUbuntu_20.04/"
 KEY="https://download.opensuse.org/repositories/home:cabelo/xUbuntu_20.04/Release.key"
 

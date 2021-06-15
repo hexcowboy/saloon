@@ -8,8 +8,8 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 # Recurse over all script directories and run the scripts
+set -m
 for file in /tmp/scripts/install-*.sh
 do
-    # The interactive mode is used to preserve user $PATH
-    bash -i $file | tee -a "/tmp/build.log"
+    bash $file | tee -a "/tmp/build.log"
 done

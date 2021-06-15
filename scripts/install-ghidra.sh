@@ -7,13 +7,13 @@ DEST="/opt/ghidra"
 # Install dependencies
 apt-get install -y $DEPS
 
-# Use the GitHub API to find latest tarball
-ZIPFILE=$(curl $URL | jq -r '.assets[].browser_download_url')
+# Use the GitHub API to find latest release
+RELEASE=$(curl $URL | jq -r '.assets[].browser_download_url')
 
-# Download the tarball
-wget $ZIPFILE -O ghidra.zip
+# Download the release
+wget $RELEASE -O ghidra.zip
 
-# Extract the tarball
+# Extract the Zip file
 # uses this weird workaround to rename the folder
 # https://superuser.com/questions/518347/equivalent-to-tars-strip-components-1-in-unzip
 unzip -d "$DEST" "ghidra.zip" && f=("$DEST"/*) && mv "$DEST"/*/* "$DEST" && rmdir "${f[@]}"

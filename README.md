@@ -1,37 +1,37 @@
-# Jackbox
+# Saloon
 
-Jackbox provides offensive security tools without having to build and configure a virtuaal machine.
+Saloon is a hacking environment that is rapidly available. Compared to the estimated 30 minute setup with Kali or Parrot, Saloon takes roughly 2 minutes to install.
 
 ## 🚀 Installation
 
 ### Install from Dockerhub (fastest)
 
 ```bash
-docker pull hexcowboy/jackbox
-docker image tag hexcowboy/jackbox jackbox
+# Pull the image from docker hub
+docker pull hexcowboy/saloon
+# Tag the image so it can be run as just "saloon"
+docker image tag hexcowboy/saloon saloon
 ```
 
 ### Build from source (configurable)
 
 Clone the repository
 ```bash
-git clone https://github.com/hexcowboy/jackbox.git && cd jackbox
-```
-
-Build the docker image
-```bash
+# Clone the repository
+git clone https://github.com/hexcowboy/saloon.git && cd saloon
+# Build the docker container
 make
 ```
 
-## 🧨 Running Jackbox
+## 🧨 Running Saloon
 
-Once the container image is built, you can attach to jackbox with Docker
+Once the container image is built, you can attach to Saloon with Docker
 ```bash
 # The -it flag is required to have an interactive TTY
-docker run -it jackbox
+docker run -it saloon
 
 # Run a command and then exit
-docker run -it jackbox smbclient -L 127.0.0.1
+docker run -it saloon smbclient -L 127.0.0.1
 ```
 
 ### Saving files between runs
@@ -39,16 +39,16 @@ docker run -it jackbox smbclient -L 127.0.0.1
 ```bash
 # The path on the left of the : is the docker volume name
 # The path on the right is the folder on the docker container
-docker run -it -v jackbox-root:/root jackbox
+docker run -it -v saloon-root:/root saloon
 
 # Mount multiple directories like so
 docker run -it \
-  -v jackbox-root:/root \
-  -v jackbox-opt:/opt \
-  -v jackbox-etc:/etc \
-  -v jackbox-var:/var \
-  -v jackbox-usr:/usr \
-  jackbox
+  -v saloon-root:/root \
+  -v saloon-opt:/opt \
+  -v saloon-etc:/etc \
+  -v saloon-var:/var \
+  -v saloon-usr:/usr \
+  saloon
 
 # Find the location of your mount like so
 docker volume inspect <mount-name>

@@ -31,7 +31,7 @@ unzip -d "$DEST" "bloodhound.zip" && f=("$DEST"/*) && mv "$DEST"/*/* "$DEST" && 
 cat << EOF > $BINARY
 #!/bin/bash
 echo "Starting BloodHound"
-echo "The default credentials on this system are: neo4j:jackbox"
+echo "The default credentials on this system are: neo4j:saloon"
 exec /opt/bloodhound/BloodHound --no-sandbox "$@" >/dev/null 2>&1 &
 EOF
 

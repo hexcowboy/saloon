@@ -1,8 +1,8 @@
 .PHONY: docker
 docker:
 	chmod u+x ./scripts/*
-	docker build -t jackbox .
+	docker build -t saloon .
 
 .PHONY: clean
 clean:
-	docker image rm --force jackbox
+	docker image rm --force saloon

@@ -16,8 +16,8 @@ apt-get install -y neo4j
 # Configure neo4j to listen on all addresses
 sed -i "s/#dbms\.default_listen_address=0\.0\.0\.0/dbms\.default_listen_address=0\.0\.0\.0/" /etc/neo4j/neo4j.conf
 
-# Set default password to "jackbox"
-neo4j-admin set-initial-password jackbox
+# Set default password to "saloon"
+neo4j-admin set-initial-password saloon
 
 # Start neo4j on startup
 update-rc.d neo4j defaults

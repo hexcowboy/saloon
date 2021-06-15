@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "Starting Gunsel"
+echo "Starting Saloon"
 service neo4j start
 
 /bin/zsh

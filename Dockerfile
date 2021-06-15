@@ -21,6 +21,11 @@ RUN apt-get purge -y command-not-found \
     && apt-get autoremove \
     && apt-get clean
 
+# Install Kali repositories
+RUN echo "deb http://http.kali.org/kali kali-rolling main non-free contrib" | sudo tee -a /etc/apt/sources.list \
+    && wget -q -O - https://archive.kali.org/archive-key.asc | apt-key add \
+    && apt-get update
+
 ADD manifests /tmp/manifests
 # Install apt manifests
 RUN xargs apt-get install -y < /tmp/manifests/apt.lib.txt
@@ -35,7 +40,7 @@ RUN xargs -l pipx install < /tmp/manifests/pipx.txt
 RUN xargs gem install < /tmp/manifests/gems.txt
 # Install go manifests
 ENV GOPATH /opt/go
-RUN xargs go get < /tmp/manifests/go.txt
+RUN GO111MODULE=on xargs go get -v < /tmp/manifests/go.txt
 # Install rust manifests
 ENV CARGO_HOME /opt/cargo
 # No crates yet :)
@@ -61,7 +66,7 @@ RUN rm -rf /tmp/*
 # https://docs.docker.com/docker-for-mac/networking/#use-cases-and-workarounds
 ENV DISPLAY=host.docker.internal:0
 
-RUN chsh -r /usr/bin/zsh
+RUN chsh -s /usr/bin/zsh
 ADD scripts/entry.sh /entry.sh
 WORKDIR $HOME
 CMD ["/entry.sh"]

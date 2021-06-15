@@ -1,5 +1,5 @@
-https://github.com/danielmiessler/SecLists.git
-https://gitlab.com/kalilinux/packages/windows-binaries
 https://github.com/danielmiessler/RobotsDisallowed.git
+https://github.com/danielmiessler/SecLists.git
 https://github.com/samratashok/nishang.git
 https://gitlab.com/kalilinux/packages/webshells.git
+https://gitlab.com/kalilinux/packages/windows-binaries

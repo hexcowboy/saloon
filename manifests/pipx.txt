@@ -1,8 +1,8 @@
-deathstar-empire
 crackmapexec
-mitmproxy
-sqlmap
+deathstar-empire
 impacket
+mitmproxy
 pwntools
 smtp-user-enum
+sqlmap
 sublist3r

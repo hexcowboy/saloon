@@ -4,7 +4,7 @@ if [ -e $HOME/.aliases ]; then
 fi
 
 # Set prompt
-export PROMPT='%F{red}%1~%f %# '
+export PROMPT='%F{blue}%1~%f %# '
 
 # Enable fuzzyfind completion
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

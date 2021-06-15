@@ -13,12 +13,12 @@ apt-get install -y $DEPS
 RELEASE=$(curl $URL | jq -r '.assets[].browser_download_url')
 
 # Download the release
-wget $RELEASE -O ghidra.zip
+wget $RELEASE -O /tmp/ghidra.zip
 
 # Extract the Zip file
 # uses this weird workaround to rename the folder
 # https://superuser.com/questions/518347/equivalent-to-tars-strip-components-1-in-unzip
-unzip -d "$DEST" "ghidra.zip" && f=("$DEST"/*) && mv "$DEST"/*/* "$DEST" && rmdir "${f[@]}"
+unzip -d "$DEST" "/tmp/ghidra.zip" && f=("$DEST"/*) && mv "$DEST"/*/* "$DEST" && rmdir "${f[@]}"
 
 # Create a binary
 cat << EOF > $BINARY

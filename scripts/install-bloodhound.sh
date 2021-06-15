@@ -16,16 +16,16 @@ apt-get install -y $DEPS
 # Find the latest release from GitHub API
 # RELEASE="$(curl $URL | jq -r '.assets[].browser_download_url' | grep linux-x64)"
 
+# Download the release
+# wget $RELEASE -O /tmp/bloodhound.zip
+
 # !! Workaround !!
 # Latest version is segfaulting, so version 3.0.3 is used for now
 # https://github.com/BloodHoundAD/BloodHound/issues/465
-wget "https://github.com/BloodHoundAD/BloodHound/releases/download/$BLOODHOUND_RELEASE/BloodHound-linux-x64.zip" -O bloodhound.zip
-
-# Download the release
-wget $RELEASE -O bloodhound.zip
+wget "https://github.com/BloodHoundAD/BloodHound/releases/download/$BLOODHOUND_RELEASE/BloodHound-linux-x64.zip" -O /tmp/bloodhound.zip
 
 # Unzip the release
-unzip -d "$DEST" "bloodhound.zip" && f=("$DEST"/*) && mv "$DEST"/*/* "$DEST" && rmdir "${f[@]}"
+unzip -d "$DEST" "/tmp/bloodhound.zip" && f=("$DEST"/*) && mv "$DEST"/*/* "$DEST" && rmdir "${f[@]}"
 
 # Create a binary that runs both neo4j and bloodhound
 cat << EOF > $BINARY

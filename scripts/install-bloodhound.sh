@@ -29,10 +29,24 @@ unzip -d "$DEST" "/tmp/bloodhound.zip" && f=("$DEST"/*) && mv "$DEST"/*/* "$DEST
 
 # Create a binary that runs both neo4j and bloodhound
 cat << EOF > $BINARY
-#!/bin/bash
+#!/usr/bin/env sh
+echo "Starting neo4j database"
+if ! service neoe4j status | grep running ; then
+  service neo4j start
+fi
+
+echo ""
+echo "Waiting for neo4j to start"
+echo "\e[31mThe default credentials on this system are: \e[32mneo4j:saloon\e[0m"
+while true; do
+  if curl -s -I http://127.0.0.1:7474 | grep -q "200 OK"; then
+    break;
+  fi
+done
+
+echo ""
 echo "Starting BloodHound"
-echo "The default credentials on this system are: neo4j:saloon"
-exec /opt/bloodhound/BloodHound --no-sandbox "$@" >/dev/null 2>&1 &
+/opt/bloodhound/BloodHound --no-sandbox "\$@"
 EOF
 
 # Make the binary executable

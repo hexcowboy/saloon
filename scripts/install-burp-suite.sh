@@ -14,14 +14,14 @@ curl -fsSL $URL -o $JAR_FILE
 
 # Create a binary
 cat << EOF > $BINARY
-#!/bin/bash
+#!/usr/bin/env sh
 echo "Starting Burp Suite Community"
 PROJECT_CONFIG="/etc/burpsuite/project_options.json"
 USER_CONFIG="/etc/burpsuite/user_options.json"
 java -jar "$JAR_FILE" \
   --config-file="\$PROJECT_CONFIG" \
   --user-config-file="\$USER_CONFIG" \
-  "$@" >/dev/null 2>&1 &
+  "\$@"
 EOF
 
 # Make the binary executable

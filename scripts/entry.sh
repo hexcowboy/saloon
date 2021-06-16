@@ -1,7 +1,12 @@
 #!/bin/bash
-echo "Starting Saloon"
+echo '   ____ ___    __   ____   ____   _  __'
+echo '  / __// _ |  / /  / __ \ / __ \ / |/ /'
+echo ' _\ \ / __ | / /__/ /_/ // /_/ //    / '
+echo '/___//_/ |_|/____/\____/ \____//_/|_/  '
+echo '             cowboy.dev                '
 
-# Start services quietly
+# Start services quietly and in the background
 service neo4j start >/dev/null 2>&1 &
 
-/bin/zsh
+# Enter with the default shell
+exec "$SHELL"

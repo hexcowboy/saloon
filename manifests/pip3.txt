@@ -1,7 +1,2 @@
 # Python 3 packages
-crackmapexec
-impacket
-mitmproxy
-pwntools
-smtp-user-enum
-sublist3r
+pipx

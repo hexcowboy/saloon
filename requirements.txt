@@ -1,0 +1,7 @@
+click
+docker
+six
+rich
+
+# Code Quality
+nox

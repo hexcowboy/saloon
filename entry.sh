@@ -21,7 +21,7 @@ if [ $# -eq 0 ] ; then
     echo -e "$ \e[32mdocker run -it saloon\e[0m"
     echo ""
     echo "or run a particular command:"
-    echo -e "$ \e[32mdocker run saloon nc -nvlp 9001\e[0m"
+    echo -e "$ \e[32mdocker run saloon gobuster -h\e[0m"
     exit 1
   fi
 else

@@ -26,31 +26,41 @@ RUN echo "deb http://http.kali.org/kali kali-rolling main non-free contrib" | su
     && wget -q -O - https://archive.kali.org/archive-key.asc | apt-key add \
     && apt-get update
 
-ADD manifests /tmp/manifests
 # Install apt manifests
-RUN xargs apt-get install -y < /tmp/manifests/apt.lib.txt
-RUN xargs apt-get install -y < /tmp/manifests/apt.lang.txt
+ADD manifests/apt.txt /tmp/manifests/apt.txt
 RUN xargs apt-get install -y < /tmp/manifests/apt.txt
-# Install python manifests
+
+# Install python manifest
+ADD manifests/pip3.txt /tmp/manifests/pip3.txt
+RUN pip3 install -r /tmp/manifests/pip3.txt
+
+# Install pipx manifest
 ENV PIPX_HOME /opt/pipx/pipx
 ENV PIPX_BIN_DIR /opt/pipx/bin
-RUN pip3 install -r /tmp/manifests/pip3.txt
+ADD manifests/pipx.txt /tmp/manifests/pipx.txt
 RUN xargs -l pipx install < /tmp/manifests/pipx.txt
-# Install ruby manifests
+
+# Install ruby manifest
+ADD manifests/gems.txt /tmp/manifests/gems.txt
 RUN xargs gem install < /tmp/manifests/gems.txt
-# Install go manifests
+
+# Install go manifest
+ADD manifests/go.txt /tmp/manifests/go.txt
 ENV GOPATH /opt/go
 RUN GO111MODULE=on xargs go get -v < /tmp/manifests/go.txt
-# Install rust manifests
+
+# Install rust manifest
+# ADD manifests/crates.txt /tmp/manifests/crates.txt
 ENV CARGO_HOME /opt/cargo
-# No crates yet :)
+
 # Install git repositories
+ADD manifests/git.txt /tmp/manifests/git.txt
 WORKDIR /opt
 RUN xargs -l git clone --depth 1 < /tmp/manifests/git.txt
 
 # Install from custom scripts
-ADD scripts /tmp/scripts
-RUN /tmp/scripts/all.sh
+ADD scripts/ /tmp/scripts
+RUN /tmp/scripts/install-all.sh
 
 # Adds skeleton files to the root file system
 ADD skeleton/ /
@@ -69,4 +79,4 @@ ENV DISPLAY=host.docker.internal:0
 RUN chsh -s /usr/bin/zsh
 ADD scripts/entry.sh /entry.sh
 WORKDIR $HOME
-CMD ["/entry.sh"]
+ENTRYPOINT ["/entry.sh"]

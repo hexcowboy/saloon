@@ -24,7 +24,13 @@ unzip -d "$DEST" "/tmp/ghidra.zip" && f=("$DEST"/*) && mv "$DEST"/*/* "$DEST" &&
 cat << EOF > $BINARY
 #!/usr/bin/env sh
 echo "Starting Ghidra"
-/opt/ghidra/support/launch.sh fg Ghidra "" "" ghidra.GhidraRun "\$@"
+/opt/ghidra/support/launch.sh \
+  fg \
+  Ghidra \
+  "" \
+  "" \
+  ghidra.GhidraRun \
+  "\$@" >/dev/null 2>&1 &
 EOF
 
 # Make the binary executable

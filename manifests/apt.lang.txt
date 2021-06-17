@@ -1,9 +1,0 @@
-golang
-npm
-php
-python
-python2
-python3
-python3-pip
-ruby-full
-rustc

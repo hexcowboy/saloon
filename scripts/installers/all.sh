@@ -9,7 +9,7 @@ fi
 
 # Recurse over all script directories and run the scripts
 set -m
-for file in /tmp/scripts/installers/*.sh
+for file in /tmp/scripts/installers/install-*.sh
 do
     bash $file | tee -a "/tmp/build.log"
 done

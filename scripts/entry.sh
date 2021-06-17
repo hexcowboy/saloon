@@ -10,21 +10,19 @@ echo -e '\e[0m'
 # Start services quietly and in the background
 service neo4j start >/dev/null 2>&1 &
 
-# If no arguments are passed in docker
-if [ $# -eq 0 ] ; then
-  # If running interactively (with -it)
-  if [ -t 0 ] ; then
+# If running interactively (with -it)
+if [ -t 0 ] ; then
+  # If no arguments are passed in docker
+  if [ $# -eq 0 ] ; then
     exec "$SHELL"
+  # If there are arguments, run them as the command
   else
-    echo ""
-    echo "try running interactively:"
-    echo -e "$ \e[32mdocker run -it saloon\e[0m"
-    echo ""
-    echo "or run a particular command:"
-    echo -e "$ \e[32mdocker run saloon nc -nvlp 9001\e[0m"
-    exit 1
+    "$@"
   fi
+# If not running interactively, ask to do so and exit
 else
-  # If a program is supplied
-  exec "$@"
+  echo ""
+  echo "saloon requires the -it argument:"
+  echo -e "$ \e[32mdocker run -it saloon\e[0m"
+  exit 1
 fi

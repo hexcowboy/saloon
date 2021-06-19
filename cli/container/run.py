@@ -3,10 +3,10 @@ import dockerpty
 from click import confirm, style
 from rich.prompt import Confirm
 
-from .pull import Pull
+from .pull import Puller
 
 
-class Run:
+class Runner:
     """Run functions share console, client, and image"""
 
     def __init__(self, console, docker_client, image):
@@ -22,7 +22,7 @@ class Run:
             f"Do you want to pull {styled_image_name} from Docker Hub?", default=True
         )
         if wants_to_pull:
-            puller = Pull(self.console, self.client, self.image)
+            puller = Puller(self.console, self.client, self.image)
             puller.pull()
         else:
             self.console.print_status(

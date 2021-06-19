@@ -2,7 +2,7 @@ from rich.panel import Panel
 from rich.progress import BarColumn, Progress, TextColumn
 
 
-class Pull:
+class Puller:
     """Pull classes will output progress and need to share the console as well as the Docker client"""
 
     def __init__(self, console, docker_client, image):
@@ -13,11 +13,12 @@ class Pull:
         self.progress_module = Progress(
             TextColumn("{task.description}"),
             BarColumn(bar_width=999, complete_style="blue", finished_style="blue"),
+            refresh_per_second=4,
             console=self.console,
             expand=True,
         )
 
-    def print_pull_banner(self):
+    def _print_pull_banner(self):
         """Tell the console user that the image is being pulled"""
         pull_banner = Panel.fit(
             f"The image [blue]{self.image}[default] is being downloaded from Docker Hub. This could take between 2 and 15 minutes depending on your internet connection and machine speed.",
@@ -29,11 +30,10 @@ class Pull:
         """Iterates over a docker pull generator"""
         with self.progress_module as progress:
 
-            tasks = {}
+            tasks = dict()
             completed_task_counter = 0
 
-            # Add the main task as the first status message, usually something like:
-            # {'status': 'Pulling from library/ubuntu', 'id': 'latest'}
+            # Add the main task as the first status message
             master_task = next(generator)
             tasks[master_task["id"]] = progress.add_task(
                 f"[blue]{master_task['status']}"
@@ -84,7 +84,7 @@ class Pull:
 
     def pull(self):
         """Pull the specified image from Docker Hub"""
-        self.print_pull_banner()
+        self._print_pull_banner()
 
         # Tell the API to pull an image (returns a generator with log output)
         image = self.client.api.pull(repr(self.image), stream=True, decode=True)
@@ -92,7 +92,7 @@ class Pull:
         # Let the parser determine what to print
         self.parse_output(image)
 
-        # If there are no errors, it's a success
+        # If the process hasn't exited, it's likely a success
         self.console.print_status(
             f"Saloon has been installed and tagged as [blue]{self.image}[/blue]"
         )

@@ -89,6 +89,9 @@ class Puller:
         # Tell the API to pull an image (returns a generator with log output)
         image = self.client.api.pull(repr(self.image), stream=True, decode=True)
 
+        # Tag the image locally
+        self.client.tag(self.image, self.image.local_name)
+
         # Let the parser determine what to print
         self.parse_output(image)
 

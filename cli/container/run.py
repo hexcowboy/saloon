@@ -16,7 +16,6 @@ class Runner:
 
     def prompt_for_pull(self):
         """Prompt the user to pull a new image"""
-        # wants_to_pull = Confirm.ask(f"Do you want to pull {self.image} from Docker Hub?", choices=["Y", "n"], default=True, show_default=False)
         styled_image_name = style(f"{self.image}", fg="blue")
         wants_to_pull = confirm(
             f"Do you want to pull {styled_image_name} from Docker Hub?", default=True
@@ -33,7 +32,7 @@ class Runner:
     def has_local_image(self):
         """Checks to see if the image is already installed locally"""
         try:
-            self.client.images.get(self.image.local_name)
+            self.client.images.get(str(self.image))
             return True
         except docker.errors.NotFound:
             return False

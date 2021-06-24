@@ -1,60 +1,37 @@
 # Saloon
 
-Saloon is a hacking environment that is rapidly available in the Docker cloud. Compared to the estimated 30 minute setup with Kali or Parrot, Saloon takes roughly 2 minutes to install.
+Saloon is a hacking environment that is rapidly available from Docker Hub. Compared to the estimated 30 minute setup with Kali or Parrot, Saloon takes roughly 5 minutes to install and 1 second to boot.
 
 ## 🚀 Installation
 
-### Install from Dockerhub (fastest)
+### Install from PyPI
 
 ```bash
-# Pull the image from docker hub
-docker pull hexcowboy/saloon
-# Tag the image so it can be run as just "saloon"
-docker image tag hexcowboy/saloon saloon
-```
-
-### Build from source (configurable)
-
-Clone the repository
-```bash
-# Clone the repository
-git clone https://github.com/hexcowboy/saloon.git && cd saloon
-# Build the docker container
-make
+pipx install saloon
 ```
 
 ## 🧨 Running Saloon
 
 Once the container image is built, you can attach to Saloon with Docker
 ```bash
-# The -it flag is required to have an interactive TTY
-docker run -it saloon
+# Get a shell
+saloon
 
 # Run a command and then exit
-docker run -it saloon smbclient -L 127.0.0.1
+saloon -- nmap -p80 -sC -sV scanme.nmap.org
 ```
 
 ### Saving files between runs
 
-```bash
-# The path on the left of the : is the docker volume name
-# The path on the right is the folder on the docker container
-docker run -it -v saloon-root:/root saloon
+> *Persistence is not available yet.*
 
-# Mount multiple directories like so
-docker run -it \
-  -v saloon-root:/root \
-  -v saloon-opt:/opt \
-  -v saloon-etc:/etc \
-  -v saloon-var:/var \
-  -v saloon-usr:/usr \
-  saloon
+### Networking
 
-# Find the location of your mount like so
-docker volume inspect <mount-name>
-```
+> *Networking is not available, but soon you will be able to do things like set up a netcat listener an accept incoming connections or set up a Burp Suite proxy.*
 
 ### Running GUI applications
+
+> *Note: Not available on Linux yet*
 
 The Docker container is compatible with X11. You just need to set your local XServer to listen on 127.0.0.1.
 
@@ -72,4 +49,4 @@ xhost + 127.0.0.1
 
 #### Other Examples
 
-Coming soon. Accepting pull requests for Windows and Linux examples.
+> *Coming soon. Accepting pull requests for Windows and Linux examples.*

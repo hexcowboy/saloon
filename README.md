@@ -1,6 +1,5 @@
 # Saloon
 
-Saloon is a hacking environment that is rapidly available from Docker Hub. Compared to the estimated 30 minute setup with Kali or Parrot, Saloon takes roughly 5 minutes to install and 1 second to boot.
 ⚠️ I am pausing development until Docker adds support for host network mode (see https://github.com/docker/roadmap/issues/238) or some other workaround is presented.
 
 Saloon is a hacking environment that is rapidly available in the Docker cloud. Compared to the estimated 30 minute setup with Kali or Parrot, Saloon takes roughly 2 minutes to install.

@@ -1,0 +1,7 @@
+click==8.0.1
+docker==5.0.0
+dockerpty==0.4.1
+nox==2021.6.12
+Pygments==2.9.0
+rich==10.3.0
+six==1.16.0

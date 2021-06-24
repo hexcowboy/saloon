@@ -59,8 +59,9 @@ WORKDIR /opt
 RUN xargs -l git clone --depth 1 < /tmp/manifests/git.txt
 
 # Install from custom scripts
-ADD scripts/ /tmp/scripts
-RUN /tmp/scripts/install-all.sh
+ADD scripts/installers /tmp/scripts/installers
+RUN /tmp/scripts/installers/all.sh
+RUN rm -rf /tmp/installers/
 
 # Adds skeleton files to the root file system
 ADD skeleton/ /
@@ -68,9 +69,6 @@ ADD skeleton/ /
 # Clean up apt
 RUN apt-get autoremove -y \
     && apt-get clean
-
-# Clean up tmp directory
-RUN rm -rf /tmp/*
 
 # Export the X11 display for use with GUI applications on host (macOS only)
 # https://docs.docker.com/docker-for-mac/networking/#use-cases-and-workarounds

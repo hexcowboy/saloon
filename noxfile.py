@@ -17,6 +17,6 @@ def format(session):
 def build(session):
     console = Console()
     client = docker.from_env()
-    image = DockerImage("hexcowboy/latest", "dev", "cowboy")
+    image = DockerImage("hexcowboy/saloon", "dev", "saloon")
     builder = Builder(console, client, image, "./container")
     builder.build()

@@ -31,16 +31,12 @@ saloon -- nmap -p80 -sC -sV scanme.nmap.org
 
 ### Running GUI applications
 
-> *Note: Not available on Linux yet*
-
 The Docker container is compatible with X11. You just need to set your local XServer to listen on 127.0.0.1.
 
-#### 
-
-
+> *⚠️ All of the following setups disable access control on your X Server. Disabling access control allows outside connections to connect to your X Server. This is insecure if you allow network connections from the internet or from an untrusted network. Make sure your are on a secure network, like your home network, if you decide to use these instructions.*
 
 <details>
-  <summary>macOS Example</summary>
+  <summary>macOS Setup</summary>
   
   1. Install XQuartz
   ```bash
@@ -51,19 +47,42 @@ The Docker container is compatible with X11. You just need to set your local XSe
   ```bash
   xhost + 127.0.0.1
   ```
-  
-</details>
-
-<details>
-  <summary>Windows Example</summary>
-  
-  1. Install VcSrv
-  ```powershell
-  choco install vcxsrv
+  4. Test a GUI application
+  ```bash
+  saloon -- wireshark
   ```
   
 </details>
 
-#### Other Examples
+<details>
+  <summary>Windows Setup</summary>
+  
+  1. Install VcSrv
+  ```powershell
+  choco install -y vcxsrv
+  ```
+  2. Launch XLaunch from the start menu
+  3. Accept all default settings, **checking** "Disable access control"
+  4. If prompted, only allow access on Private networks
+  5. Test a GUI application
+  ```bash
+  saloon -- wireshark
+  ```
+  
+</details>
 
-> *Coming soon. Accepting pull requests for Windows and Linux examples.*
+<details>
+  <summary>Linux Setup</summary>
+  
+  Linux desktops usually already come with an X Server installed.
+  
+  1. Disable access control
+  ```bash
+  xhost +
+  ```
+  2. Test a GUI application
+  ```bash
+  saloon -- wireshark
+  ```
+  
+</details>

@@ -54,9 +54,8 @@ class Runner:
             stdin_open=True,
             tty=True,
             # TODO: Figure out host network mode
-            # network_mode="host", # Works on Linux only
-            # publish_all_ports=True,
             # https://blog.oddbit.com/post/2014-08-11-four-ways-to-connect-a-docker/
+            network_mode="host", # Works on Linux only
         )
 
         # Enter the interactive TTY (this package handles all PTY stuff)

@@ -1,9 +1,6 @@
 # Saloon
 
-Saloon is a hacking environment that is rapidly available from Docker Hub. Compared to the estimated 30 minute setup with Kali or Parrot, Saloon takes roughly 5 minutes to install and 1 second to boot.
-⚠️ I am pausing development until Docker adds support for host network mode (see https://github.com/docker/roadmap/issues/238) or some other workaround is presented.
-
-Saloon is a hacking environment that is rapidly available in the Docker cloud. Compared to the estimated 30 minute setup with Kali or Parrot, Saloon takes roughly 2 minutes to install.
+Saloon is a hacking environment that is rapidly available in the Docker cloud. Compared to the estimated 30 minute setup with Kali or Parrot, Saloon takes roughly 5 minutes to install.
 
 ## 🚀 Installation
 
@@ -34,22 +31,58 @@ saloon -- nmap -p80 -sC -sV scanme.nmap.org
 
 ### Running GUI applications
 
-> *Note: Not available on Linux yet*
-
 The Docker container is compatible with X11. You just need to set your local XServer to listen on 127.0.0.1.
 
-#### macOS Example
+> *⚠️ All of the following setups disable access control on your X Server. Disabling access control allows outside connections to connect to your X Server. This is insecure if you allow network connections from the internet or from an untrusted network. Make sure your are on a secure network, like your home network, if you decide to use these instructions.*
 
-1. Install XQuartz
-```bash
-brew install --cask xquartz
-```
-2. Enable `XQuartz` > `Preferences` > `Security` > `Allow connections from network clients`
-3. Add your local IP as an xhost
-```bash
-xhost + 127.0.0.1
-```
+<details>
+  <summary>macOS Setup</summary>
+  
+  1. Install XQuartz
+  ```bash
+  brew install --cask xquartz
+  ```
+  2. Enable `XQuartz` > `Preferences` > `Security` > `Allow connections from network clients`
+  3. Add your local IP as an xhost
+  ```bash
+  xhost + 127.0.0.1
+  ```
+  4. Test a GUI application
+  ```bash
+  saloon -- wireshark
+  ```
+  
+</details>
 
-#### Other Examples
+<details>
+  <summary>Windows Setup</summary>
+  
+  1. Install VcSrv
+  ```powershell
+  choco install -y vcxsrv
+  ```
+  2. Launch XLaunch from the start menu
+  3. Accept all default settings, **checking** "Disable access control"
+  4. If prompted, only allow access on Private networks
+  5. Test a GUI application
+  ```bash
+  saloon -- wireshark
+  ```
+  
+</details>
 
-> *Coming soon. Accepting pull requests for Windows and Linux examples.*
+<details>
+  <summary>Linux Setup</summary>
+  
+  Linux desktops usually already come with an X Server installed.
+  
+  1. Disable access control
+  ```bash
+  xhost +
+  ```
+  2. Test a GUI application
+  ```bash
+  saloon -- wireshark
+  ```
+  
+</details>

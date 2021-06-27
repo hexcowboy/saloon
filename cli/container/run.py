@@ -51,11 +51,17 @@ class Runner:
         container = self.client.containers.create(
             image=f"{self.image}",
             command=sub_command,
+
+            auto_remove=True,
+
             stdin_open=True,
             tty=True,
+
             # TODO: Figure out host network mode
             # https://blog.oddbit.com/post/2014-08-11-four-ways-to-connect-a-docker/
             network_mode="host", # Works on Linux only
+            hostname="saloon",
+            extra_hosts= {"host.docker.internal": "host-gateway",}
         )
 
         # Enter the interactive TTY (this package handles all PTY stuff)

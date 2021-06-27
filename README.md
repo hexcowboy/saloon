@@ -39,7 +39,7 @@ saloon -- nmap -p80 -sC -sV scanme.nmap.org
 
 The Docker container is compatible with X11. You just need to set your local XServer to listen on 127.0.0.1.
 
-> *⚠️ All of the following setups disable access control on your X Server. Disabling access control allows outside connections to connect to your X Server. This is insecure if you allow network connections from the internet or from an untrusted network. Make sure your are on a secure network, like your home network, if you decide to use these instructions.*
+> *⚠️ All of the following setups disable access control on your X Server. Make sure your X Server cannot be accessed by any untrusted networks.*
 
 <details>
   <summary>macOS Setup</summary>

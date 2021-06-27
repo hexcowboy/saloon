@@ -4,30 +4,36 @@ Saloon is a hacking environment that is rapidly available in the Docker cloud. C
 
 ## 🚀 Installation
 
+### Requirements
+
+* Windows (with WSL2), macOS, Linux
+* Docker
+* Python 3
+
 ### Install from PyPI
 
 ```bash
 pipx install saloon
+# or
+pip3 install saloon
 ```
 
 ## 🧨 Running Saloon
 
-Once the container image is built, you can attach to Saloon with Docker
+Once the container image is pulled, you can start running commands
 ```bash
-# Get a shell
+# Get an interactive shell
 saloon
 
 # Run a command and then exit
 saloon -- nmap -p80 -sC -sV scanme.nmap.org
 ```
 
-### Saving files between runs
-
-> *Persistence is not available yet.*
-
 ### Networking
 
-> *Networking is not available, but soon you will be able to do things like set up a netcat listener an accept incoming connections or set up a Burp Suite proxy.*
+> *Networking is not available\*, but soon you will be able to do things like set up a netcat listener an accept incoming connections or set up a Burp Suite proxy.*
+
+<small>* exception: Linux hosts can interact with saloon from the host interface (127.0.0.1)</small>
 
 ### Running GUI applications
 
@@ -37,7 +43,7 @@ The Docker container is compatible with X11. You just need to set your local XSe
 
 <details>
   <summary>macOS Setup</summary>
-  
+
   1. Install XQuartz
   ```bash
   brew install --cask xquartz
@@ -51,12 +57,12 @@ The Docker container is compatible with X11. You just need to set your local XSe
   ```bash
   saloon -- wireshark
   ```
-  
+
 </details>
 
 <details>
   <summary>Windows Setup</summary>
-  
+
   1. Install VcSrv
   ```powershell
   choco install -y vcxsrv
@@ -68,14 +74,14 @@ The Docker container is compatible with X11. You just need to set your local XSe
   ```bash
   saloon -- wireshark
   ```
-  
+
 </details>
 
 <details>
   <summary>Linux Setup</summary>
-  
+
   Linux desktops usually already come with an X Server installed.
-  
+
   1. Disable access control
   ```bash
   xhost +
@@ -84,5 +90,5 @@ The Docker container is compatible with X11. You just need to set your local XSe
   ```bash
   saloon -- wireshark
   ```
-  
+
 </details>

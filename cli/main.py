@@ -17,13 +17,12 @@ def cli(sub_command):
     install()
     console = Console()
 
-    # Create a Docker client from the environment
-    client = docker.from_env()
-
-    # Test that Docker is running
     try:
+        # Create a Docker client from the environment
+        client = docker.from_env()
+        # Test that Docker is running
         client.info()
-    except:
+    except DockerException:
         console.print("Docker is not running.")
         console.print(
             "You can download Docker here: https://docs.docker.com/engine/install/"

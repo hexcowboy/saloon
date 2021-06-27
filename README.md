@@ -35,17 +35,34 @@ saloon -- nmap -p80 -sC -sV scanme.nmap.org
 
 The Docker container is compatible with X11. You just need to set your local XServer to listen on 127.0.0.1.
 
-#### macOS Example
+#### 
 
-1. Install XQuartz
-```bash
-brew install --cask xquartz
-```
-2. Enable `XQuartz` > `Preferences` > `Security` > `Allow connections from network clients`
-3. Add your local IP as an xhost
-```bash
-xhost + 127.0.0.1
-```
+
+
+<details>
+  <summary>macOS Example</summary>
+  
+  1. Install XQuartz
+  ```bash
+  brew install --cask xquartz
+  ```
+  2. Enable `XQuartz` > `Preferences` > `Security` > `Allow connections from network clients`
+  3. Add your local IP as an xhost
+  ```bash
+  xhost + 127.0.0.1
+  ```
+  
+</details>
+
+<details>
+  <summary>Windows Example</summary>
+  
+  1. Install VcSrv
+  ```powershell
+  choco install vcxsrv
+  ```
+  
+</details>
 
 #### Other Examples
 

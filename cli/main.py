@@ -22,7 +22,7 @@ def cli(sub_command):
         client = docker.from_env()
         # Test that Docker is running
         client.info()
-    except DockerException:
+    except docker.errors.DockerException:
         console.print("Docker is not running.")
         console.print(
             "You can download Docker here: https://docs.docker.com/engine/install/"

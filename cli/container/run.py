@@ -1,7 +1,9 @@
 import docker
-import dockerpty
+try:
+    import dockerpty
+except ModuleNotFoundError:
+    exit("Your operating system is not supported.")
 from click import confirm, style
-from rich.prompt import Confirm
 
 from .pull import Puller
 

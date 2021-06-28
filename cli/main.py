@@ -7,7 +7,7 @@ from cli.container.run import Runner
 from cli.util.console import Console
 
 # The docker tag used to build/pull from
-image = DockerImage("hexcowboy/saloon", "dev", local_name="saloon")
+image = DockerImage("hexcowboy/saloon", "dev")
 
 # TODO: Add an argument for opening ports
 @click.command(context_settings=dict(help_option_names=["-h", "--help"]))

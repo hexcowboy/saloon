@@ -26,7 +26,7 @@ class Puller:
         )
         self.console.print(pull_banner)
 
-    def parse_output(self, generator):
+    def _parse_output(self, generator):
         """Iterates over a docker pull generator"""
         with self.progress_module as progress:
 
@@ -90,7 +90,7 @@ class Puller:
         image = self.client.api.pull(repr(self.image), stream=True, decode=True)
 
         # Let the parser determine what to print
-        self.parse_output(image)
+        self._parse_output(image)
 
         # If the process hasn't exited, it's likely a success
         self.console.print_status(

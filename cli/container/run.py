@@ -18,7 +18,9 @@ class Runner:
         self.console = console
         self.client = docker_client
         self.image = image
-        self.local_image = self.image.get_object(docker_client)
+
+    def _get_local_image(self):
+        return self.image.get_object(self.client)
 
     def prompt_for_pull(self, required_to_proceed=False):
         """Prompt the user to pull a new image"""
@@ -48,7 +50,7 @@ class Runner:
         with self.console.status("Checkng for updates"):
             remote_image = self.client.images.get_registry_data(str(self.image))
             sha256_regex = re.compile('[A-Fa-f0-9]{64}')
-            local_digest = sha256_regex.findall(self.local_image.attrs["RepoDigests"][0].split('@')[1])
+            local_digest = sha256_regex.findall(self._get_local_image().attrs["RepoDigests"][0].split('@')[1])
             remote_digest = sha256_regex.findall(remote_image.attrs["Descriptor"]["digest"])
             if local_digest != remote_digest:
                 return True
@@ -56,14 +58,14 @@ class Runner:
 
     def check_stale_image(self):
         """Checks to see if the image is over 2 weeks old"""
-        last_tag_time = iso8601.parse_date(self.local_image.attrs['Metadata']['LastTagTime'])
+        last_tag_time = iso8601.parse_date(self._get_local_image().attrs['Metadata']['LastTagTime'])
         days_since_last_tag = datetime.now(timezone.utc) - last_tag_time
 
         if days_since_last_tag > timedelta(days=14):
             self.console.print(f"Days since last checked for updates: [blue]{days_since_last_tag.days}[/blue]")
 
             # Reset the last tag time to reset the staleness
-            self.local_image.tag(str(self.image))
+            self._get_local_image().tag(str(self.image))
 
             return self.check_for_updates()
 

@@ -7,7 +7,10 @@ class DockerImage:
         self.tag = tag
 
     def get_object(self, client):
-        return client.images.get(str(self))
+        try:
+            return client.images.get(str(self))
+        except:
+            return None
 
     def __repr__(self):
         return f"{self.name}:{self.tag}"

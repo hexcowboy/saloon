@@ -1,11 +1,9 @@
 import re
-from collections import deque
 
-from rich import box
 from rich.live import Live
 from rich.panel import Panel
 from rich.progress import Progress, SpinnerColumn, TextColumn
-from rich.table import Table
+from rich.text import Text
 
 
 class Builder:
@@ -35,18 +33,16 @@ class Builder:
         self.console.print(build_banner)
 
     def _generate_table(self, header, messages):
-        """Generate a table with 5 rows"""
-        table = Table(header, box=box.SIMPLE_HEAD, padding=(0, 0))
-        table.add_column()
+        """Generate a text table with 5 rows"""
+        table = Text("✔ ", style="bright_black").append(header, style="bold white")
 
         for message in messages:
-            console_width = self.console.width - 4
-            shortened_message = message[0:console_width]
-            table.add_row(f"{shortened_message}", style="bright_black")
+            shortened_message = message[0:self.console.width]
+            table.append(f"\n{shortened_message}", style="bright_black")
 
         return table
 
-    def parse_output(self, generator):
+    def _parse_output(self, generator):
         """Iterates over a docker build generator"""
         tasks = list()
         current_step = next(generator).get("stream")
@@ -62,18 +58,18 @@ class Builder:
 
                     if step_matcher.match(message):
                         # TODO: Sometimes this bit is a bit choppy with the Live view
-                        self.console.success(current_step)
-                        current_step = message
+                        live.console.print(f"[bold green]✔ [default]" + current_step)
+                        current_step = message[:self.console.width-2]
                         tasks.clear()
 
                     else:
-                        # Get console width and account for padding
                         tasks.append(message)
+                        # Generate a table with the last 5 messages
                         live.update(self._generate_table(current_step, tasks[-5:]))
 
                 elif error:
                     live.stop()
-                    self.console.failure(message["error"])
+                    live.console.print(f"[bold red]✘ [default]" + message["error"])
                     for task in tasks:
                         self.console.print(task, style=None)
                     exit(1)
@@ -89,7 +85,7 @@ class Builder:
         build = self.client.api.build(path=self.context, tag=target_name, decode=True)
 
         # Let the parser determine what to print
-        self.parse_output(build)
+        self._parse_output(build)
 
         # If the process hasn't exited, it's likely a success
         self.console.print_status(

@@ -4,7 +4,7 @@ import iso8601
 try:
     import dockerpty
 except ModuleNotFoundError:
-    exit("Your operating system is not supported.")
+    exit("Your operating system is not supported.\nInstall Saloon on WSL2 if you're on Windows.")
 from datetime import datetime, timedelta, timezone
 from click import confirm, style
 

@@ -14,10 +14,10 @@ class Builder:
     You can find the Dockerfile in <project_root>/container/Dockerfile
     """
 
-    def __init__(self, console, docker_client, target_image, context):
+    def __init__(self, console, docker_client, image, context):
         self.console = console
         self.client = docker_client
-        self.target_image = target_image
+        self.image = image
         self.context = context
 
         self.progress_module = Progress(
@@ -29,7 +29,7 @@ class Builder:
     def _print_build_banner(self):
         """Tell the console user that the image is being pulled"""
         build_banner = Panel.fit(
-            f"This will attempt to build the docker image locally. The output image will be tagged as [blue]{self.target_image}[/blue].",
+            f"This will attempt to build the docker image locally. The output image will be tagged as [blue]{self.image}[/blue].",
             title="[bold blue]Building image",
         )
         self.console.print(build_banner)
@@ -83,7 +83,7 @@ class Builder:
         self._print_build_banner()
 
         # Sets the target name, also know as the image tag
-        target_name = self.target_image.local_name
+        target_name = str(self.image)
 
         # Tell the API to build an image (returns a generator with log output)
         build = self.client.api.build(path=self.context, tag=target_name, decode=True)

@@ -92,9 +92,6 @@ class Puller:
         # Let the parser determine what to print
         self.parse_output(image)
 
-        # Tag the image locally
-        self.client.api.tag(str(self.image), self.image.local_name)
-
         # If the process hasn't exited, it's likely a success
         self.console.print_status(
             f"Saloon has been installed and tagged as [blue]{self.image}[/blue]"
